@@ -45,7 +45,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   // send back the user and token in the response to the client
   res.cookie("token", token, {
     path: "/",
-    httpOnly: true,
+    httpOnly: false,
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     sameSite: "none", // cross-site access --> allow all third-party cookies
     secure: false,
@@ -130,9 +130,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 // logout user
 export const logoutUser = asyncHandler(async (req, res) => {
   res.clearCookie("token", {
-    httpOnly: true,
+    httpOnly: false,
     sameSite: "none",
-    secure: true,
+    secure: false,
     path: "/",
   });
 
